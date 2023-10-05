@@ -557,3 +557,90 @@ WHERE  continent = 'Europe';
 -- Switzerland	10%
 -- Ukraine	49%
 -- United Kingdom	79%
+
+/*
+We can use the word ALL to allow >= or > or < or <=to act over a list. 
+For example, you can find the largest country in the world, 
+by population with this query:
+
+SELECT name
+  FROM world
+ WHERE population >= ALL(SELECT population
+                           FROM world
+                          WHERE population>0)
+You need the condition population>0 in the sub-query as 
+some countries have null for population.
+*/
+
+-- Bigger than every country in Europe
+-- 6.
+-- Which countries have a GDP greater than every country in Europe? 
+-- [Give the name only.] (Some countries may have NULL gdp values)
+
+SELECT name
+FROM world
+WHERE gdp > ALL(SELECT gdp
+                FROM world
+                WHERE continent = 'Europe'
+                AND gdp > 0);
+
+-- Correct answer
+-- name
+-- China
+-- Japan
+-- United States
+
+/*
+We can refer to values in the outer SELECT within the inner SELECT. 
+We can name the tables so that we can tell the difference 
+between the inner and outer versions.
+*/
+
+-- Largest in each continent
+-- 7.
+-- Find the largest country (by area) in each continent, 
+-- show the continent, the name and the area:
+-- 
+-- The above example is known as a correlated or synchronized sub-query.
+-- 
+-- Using correlated subqueries:
+-- A correlated subquery works like a nested loop: the subquery only has 
+-- access to rows related to a single record at a time in the outer query. 
+-- The technique relies on table aliases to identify two different uses 
+-- of the same table, one in the outer query and the other in the subquery.
+-- One way to interpret the line in the WHERE clause that references the 
+-- two table is “… where the correlated values are the same”.
+-- In the example provided, you would say “select the country details 
+-- from world where the population is greater than or equal to the 
+-- population of all countries where the continent is the same”.
+ 
+-- SELECT continent, name, population FROM world x
+--   WHERE population >= ALL
+--     (SELECT population FROM world y
+--         WHERE y.continent=x.continent
+--           AND population>0)
+
+SELECT continent, name, area 
+FROM world x
+WHERE 
+  area >= ALL(
+    SELECT area 
+    FROM world y
+    WHERE y.continent = x.continent
+    AND area > 0
+  );
+
+-- Correct answer
+-- continent	name	area
+-- Africa	Algeria	2381741
+-- Insular Oceania	Australia	7633565
+-- South America	Brazil	8460415
+-- Asia	China	9326410
+-- Europe	Russia	16378410
+-- North America	United States	9147593
+
+-- TODO
+-- First country of each continent (alphabetically)
+-- 8.
+-- List each continent and the name of the country that comes first alphabetically.
+

@@ -395,3 +395,165 @@ WHERE continent = 'Europe'
     WHERE continent = 'Europe' 
       AND name = 'United Kingdom'
   );
+
+-- Correct answer
+-- name
+-- Austria
+-- Belgium
+-- Denmark
+-- Finland
+-- Germany
+-- Iceland
+-- Liechtenstein
+-- Luxembourg
+-- Monaco
+-- Netherlands
+-- Norway
+-- Republic of Ireland
+-- San Marino
+-- Sweden
+-- Switzerland
+
+-- Neighbours of Argentina and Australia
+-- 3.
+-- List the name and continent of countries in the continents containing 
+-- either Argentina or Australia. Order by name of the country.
+
+SELECT name, continent
+FROM world
+WHERE continent in (
+  SELECT continent
+  FROM world
+  WHERE name in ('Argentina', 'Australia')
+);
+
+-- Correct answer
+-- name	continent
+-- Argentina	South America
+-- Australia	Insular Oceania
+-- Bolivia	South America
+-- Brazil	South America
+-- Chile	South America
+-- Colombia	South America
+-- Ecuador	South America
+-- Federated States of Micronesia	Insular Oceania
+-- Fiji	Insular Oceania
+-- Guyana	South America
+-- Kiribati	Insular Oceania
+-- Marshall Islands	Insular Oceania
+-- Nauru	Insular Oceania
+-- New Zealand	Insular Oceania
+-- Palau	Insular Oceania
+-- Papua New Guinea	Insular Oceania
+-- Paraguay	South America
+-- Peru	South America
+-- Samoa	Insular Oceania
+-- Solomon Islands	Insular Oceania
+-- Suriname	South America
+-- Tonga	Insular Oceania
+-- Tuvalu	Insular Oceania
+-- Uruguay	South America
+-- Vanuatu	Insular Oceania
+-- Venezuela	South America
+
+-- Between Canada and Poland
+-- 4.
+-- Which country has a population that is more than United Kingdom but less than Germany? Show the name and the population.
+
+SELECT name, population
+FROM world
+WHERE population > (
+  SELECT population
+  FROM world
+  WHERE name = 'United Kingdom'
+)
+AND population < (
+  SELECT population
+  FROM world
+  WHERE name = 'Germany'
+);
+
+-- Correct answer
+-- name	population
+-- France	68128000
+-- Thailand	68263022
+
+-- Percentages of Germany
+-- 5.
+-- Germany (population 80 million) has the largest population of the 
+-- countries in Europe. Austria (population 8.5 million) has 11% of 
+-- the population of Germany.
+-- 
+-- Show the name and the population of each country in Europe. 
+-- Show the population as a percentage of the population of Germany.
+-- 
+-- The format should be Name, Percentage for example:
+-- 
+-- ```sql
+-- name	percentage
+-- Albania	3%
+-- Andorra	0%
+-- Austria	11%
+-- ...	...
+-- ```
+-- 
+-- Decimal places
+-- You can use the function ROUND to remove the decimal places.
+-- Percent symbol %
+-- You can use the function CONCAT to add the percentage symbol.
+
+SELECT name,
+       CONCAT(ROUND(100 * ( population / (SELECT population
+                                          FROM   world
+                                          WHERE  name = 'Germany') ), 0), '%')
+       AS
+       percentage
+FROM   world
+WHERE  continent = 'Europe'; 
+
+-- Correct answer
+-- name	percentage
+-- Albania	3%
+-- Andorra	0%
+-- Austria	11%
+-- Belarus	11%
+-- Belgium	14%
+-- Bosnia and Herzegovina	4%
+-- Bulgaria	8%
+-- Croatia	5%
+-- Czech Republic	13%
+-- Denmark	7%
+-- Estonia	2%
+-- Finland	7%
+-- France	81%
+-- Germany	100%
+-- Greece	12%
+-- Hungary	11%
+-- Iceland	0%
+-- Italy	70%
+-- Kazakhstan	24%
+-- Latvia	2%
+-- Liechtenstein	0%
+-- Lithuania	3%
+-- Luxembourg	1%
+-- Malta	1%
+-- Moldova	3%
+-- Monaco	0%
+-- Montenegro	1%
+-- Netherlands	21%
+-- North Macedonia	2%
+-- Norway	7%
+-- Poland	45%
+-- Portugal	12%
+-- Republic of Ireland	6%
+-- Romania	23%
+-- Russia	173%
+-- San Marino	0%
+-- Serbia	8%
+-- Slovakia	6%
+-- Slovenia	3%
+-- Spain	57%
+-- Sweden	12%
+-- Switzerland	10%
+-- Ukraine	49%
+-- United Kingdom	79%

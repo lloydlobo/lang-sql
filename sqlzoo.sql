@@ -311,3 +311,31 @@ WHERE winner LIKE 'Sir%';
 -- Sir Frederick Hopkins	1929	Medicine
 -- Sir Austen Chamberlain	1925	Peace
 -- Sir William Ramsay	1904	Chemistry
+
+-- Chemistry and Physics last
+-- 14.
+-- The expression subject IN ('chemistry','physics') can be used as a value - it will be 0 or 1.
+-- 
+-- Show the 1984 winners and subject ordered by subject and winner name; but list chemistry and physics last.
+
+-- Order the results first by whether the subject is 'Physics' or 'Chemistry' 
+-- and then orders them by subject and winner within each subject group.
+SELECT winner, subject
+FROM nobel
+WHERE yr = 1984
+ORDER BY 
+  subject IN ('Physics', 'Chemistry'), 
+  subject, 
+  winner
+
+-- Correct answer
+-- winner	subject
+-- Richard Stone	Economics
+-- Jaroslav Seifert	Literature
+-- César Milstein	Medicine
+-- Georges J.F. Köhler	Medicine
+-- Niels K. Jerne	Medicine
+-- Desmond Tutu	Peace
+-- Bruce Merrifield	Chemistry
+-- Carlo Rubbia	Physics
+-- Simon van der Meer	Physics

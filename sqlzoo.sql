@@ -639,8 +639,23 @@ WHERE
 -- Europe	Russia	16378410
 -- North America	United States	9147593
 
--- TODO
 -- First country of each continent (alphabetically)
 -- 8.
 -- List each continent and the name of the country that comes first alphabetically.
 
+-- We use the GROUP BY clause to group the results by the "continent_name" column, so we get one row per continent.
+-- Within each group (continent), we use the MIN function to find the minimum (i.e., the first alphabetically) "country_name."
+
+SELECT continent, MIN(name) as Name
+FROM world
+GROUP BY continent
+ORDER BY Name
+
+-- Correct answer
+-- continent	Name
+-- Asia	Afghanistan
+-- Europe	Albania
+-- Africa	Algeria
+-- North America	Antigua and Barbuda
+-- South America	Argentina
+-- Insular Oceania	Australia

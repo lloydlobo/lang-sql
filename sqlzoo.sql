@@ -98,7 +98,8 @@ WHERE yr > 1999
 
 -- Literature in the 1980's
 -- 5.
--- Show all details (yr, subject, winner) of the literature prize winners for 1980 to 1989 inclusive.
+-- Show all details (yr, subject, winner) of the literature prize winners 
+-- for 1980 to 1989 inclusive.
 
 SELECT yr,subject,winner 
 FROM nobel
@@ -182,7 +183,8 @@ WHERE winner LIKE 'John%';
 
 -- Chemistry and Physics from different years
 -- 8.
--- Show the year, subject, and name of physics winners for 1980 together with the chemistry winners for 1984.
+-- Show the year, subject, and name of physics winners for 1980 
+-- together with the chemistry winners for 1984.
 
 SELECT yr, subject, winner 
 FROM nobel
@@ -197,7 +199,8 @@ WHERE (yr = 1980 AND subject = 'physics')
 
 -- Exclude Chemists and Medics
 -- 9.
--- Show the year, subject, and name of winners for 1980 excluding chemistry and medicine
+-- Show the year, subject, and name of winners for 1980 excluding 
+-- chemistry and medicine
 
 SELECT yr, subject, winner 
 FROM nobel
@@ -214,7 +217,10 @@ WHERE yr = 1980
 
 -- Early Medicine, Late Literature
 -- 10.
--- Show year, subject, and name of people who won a 'Medicine' prize in an early year (before 1910, not including 1910) together with winners of a 'Literature' prize in a later year (after 2004, including 2004)
+-- Show year, subject, and name of people who won a 'Medicine' 
+-- prize in an early year (before 1910, not including 1910) 
+-- together with winners of a 'Literature' prize in a later year 
+-- (after 2004, including 2004)
 
 SELECT yr, subject, winner 
 FROM nobel
@@ -282,7 +288,8 @@ WHERE winner = 'EUGENE O\'NEILL';
 -- 13.
 -- Knights in order
 -- 
--- List the winners, year and subject where the winner starts with Sir. Show the the most recent first, then by name order.
+-- List the winners, year and subject where the winner starts with Sir. 
+-- Show the the most recent first, then by name order.
 
 SELECT winner, yr, subject
 FROM nobel
@@ -314,9 +321,11 @@ WHERE winner LIKE 'Sir%';
 
 -- Chemistry and Physics last
 -- 14.
--- The expression subject IN ('chemistry','physics') can be used as a value - it will be 0 or 1.
+-- The expression subject IN ('chemistry','physics') can be used 
+-- as a value - it will be 0 or 1.
 -- 
--- Show the 1984 winners and subject ordered by subject and winner name; but list chemistry and physics last.
+-- Show the 1984 winners and subject ordered by subject 
+-- and winner name; but list chemistry and physics last.
 
 -- Order the results first by whether the subject is 'Physics' or 'Chemistry' 
 -- and then orders them by subject and winner within each subject group.

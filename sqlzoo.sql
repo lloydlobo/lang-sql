@@ -246,3 +246,68 @@ WHERE (subject = 'medicine' AND yr < 1910)
 -- 1903	Medicine	Niels Ryberg Finsen
 -- 1902	Medicine	Ronald Ross
 -- 1901	Medicine	Emil von Behring
+
+-- Nobel Quiz
+-- 
+-- Harder Questions
+-- Umlaut
+-- 11.
+-- Find all details of the prize won by PETER GRÜNBERG
+-- 
+-- Non-ASCII characters
+
+SELECT yr, subject, winner
+FROM nobel
+WHERE winner = 'PETER GRÜNBERG';
+
+-- Correct answer
+-- yr	subject	winner
+-- 2007	Physics	Peter Grünberg
+
+-- Apostrophe
+-- 12.
+-- Find all details of the prize won by EUGENE O'NEILL
+-- 
+-- Escaping single quotes
+
+SELECT yr, subject, winner
+FROM nobel
+WHERE winner = 'EUGENE O\'NEILL';
+
+-- Correct answer
+-- yr	subject	winner
+-- 1936	Literature	Eugene O'Neill
+
+-- Knights of the realm
+-- 13.
+-- Knights in order
+-- 
+-- List the winners, year and subject where the winner starts with Sir. Show the the most recent first, then by name order.
+
+SELECT winner, yr, subject
+FROM nobel
+WHERE winner LIKE 'Sir%';
+
+-- Correct answer
+-- winner	yr	subject
+-- Sir Martin J. Evans	2007	Medicine
+-- Sir Peter Mansfield	2003	Medicine
+-- Sir Paul Nurse	2001	Medicine
+-- Sir Harold Kroto	1996	Chemistry
+-- Sir James W. Black	1988	Medicine
+-- Sir Arthur Lewis	1979	Economics
+-- Sir Nevill F. Mott	1977	Physics
+-- Sir Bernard Katz	1970	Medicine
+-- Sir John Eccles	1963	Medicine
+-- Sir Frank Macfarlane Burnet	1960	Medicine
+-- Sir Cyril Hinshelwood	1956	Chemistry
+-- Sir Robert Robinson	1947	Chemistry
+-- Sir Alexander Fleming	1945	Medicine
+-- Sir Howard Florey	1945	Medicine
+-- Sir Henry Dale	1936	Medicine
+-- Sir Norman Angell	1933	Peace
+-- Sir Charles Sherrington	1932	Medicine
+-- Sir Venkata Raman	1930	Physics
+-- Sir Frederick Hopkins	1929	Medicine
+-- Sir Austen Chamberlain	1925	Peace
+-- Sir William Ramsay	1904	Chemistry

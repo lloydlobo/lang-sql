@@ -195,3 +195,54 @@ WHERE (yr = 1980 AND subject = 'physics')
 -- 1980	Physics	James Cronin
 -- 1980	Physics	Val Fitch
 
+-- Exclude Chemists and Medics
+-- 9.
+-- Show the year, subject, and name of winners for 1980 excluding chemistry and medicine
+
+SELECT yr, subject, winner 
+FROM nobel
+WHERE yr = 1980
+ AND subject NOT IN ('chemistry', 'medicine');
+  
+-- Correct answer
+-- yr	subject	winner
+-- 1980	Economics	Lawrence R. Klein
+-- 1980	Literature	Czeslaw Milosz
+-- 1980	Peace	Adolfo Pérez Esquivel
+-- 1980	Physics	James Cronin
+-- 1980	Physics	Val Fitch
+
+-- Early Medicine, Late Literature
+-- 10.
+-- Show year, subject, and name of people who won a 'Medicine' prize in an early year (before 1910, not including 1910) together with winners of a 'Literature' prize in a later year (after 2004, including 2004)
+
+SELECT yr, subject, winner 
+FROM nobel
+WHERE (subject = 'medicine' AND yr < 1910)
+  OR (subject = 'literature' AND yr > 2003);
+
+-- Correct answer
+-- yr	subject	winner
+-- 2015	Literature	Svetlana Alexievich
+-- 2014	Literature	Patrick Modiano
+-- 2013	Literature	Alice Munro
+-- 2012	Literature	Mo Yan
+-- 2011	Literature	Tomas Tranströmer
+-- 2010	Literature	Mario Vargas Llosa
+-- 2009	Literature	Herta Müller
+-- 2008	Literature	Jean-Marie Gustave Le Clézio
+-- 2007	Literature	Doris Lessing
+-- 2006	Literature	Orhan Pamuk
+-- 2005	Literature	Harold Pinter
+-- 2004	Literature	Elfriede Jelinek
+-- 1909	Medicine	Theodor Kocher
+-- 1908	Medicine	Paul Ehrlich
+-- 1908	Medicine	Ilya Mechnikov
+-- 1907	Medicine	Alphonse Laveran
+-- 1906	Medicine	Camillo Golgi
+-- 1906	Medicine	Santiago Ramón y Cajal
+-- 1905	Medicine	Robert Koch
+-- 1904	Medicine	Ivan Pavlov
+-- 1903	Medicine	Niels Ryberg Finsen
+-- 1902	Medicine	Ronald Ross
+-- 1901	Medicine	Emil von Behring

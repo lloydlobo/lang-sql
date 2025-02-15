@@ -1,13 +1,23 @@
 /*
-See https://sqlnoir.com
+SQL Noir Solve mysteries through SQL.
 
-Debug:
 
-    select cs.*, s.*, i.*
-    from crime_scene as cs
-    full join suspects as s on cs.id = s.id
-    full join interviews as i on s.id = i.suspect_id
-    ;
+Original from https://sqlnoir.com
+Mentioned in https://news.ycombinator.com/item?id=43041827
+
+See also:
+
+- [SQL Island](https://sql-island.informatik.uni-kl.de)
+- [SQL Murder Mystery](https://mystery.knightlab.com)
+- [SQLab GitHub](https://github.com/laowantong/sqlab)
+- [SQLab Research Paper](https://arxiv.org/abs/2410.16120)
+- [SQL Game Console & Editor](https://eskuel.de)
+- [Example game (Zoo)](https://eskuel.de/zoo/)
+- [SQL Bolt](https://sqlbolt.com)
+- [Regex One](https://regexone.com)
+- [PG Exercises](https://pgexercises.com)
+- [MathNet Wikipedia](https://en.m.wikipedia.org/wiki/Mathnet)
+- [Querymon Tutorial](https://www.youtube.com/watch?v=kkP_W8xFz5s)
 */
 /*
 ===============================================================================
